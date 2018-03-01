@@ -28,7 +28,9 @@ public class ListaCadena {
          * @param elemento el elemento del nodo.
          */
         public Nodo(String elemento) {
-            // Aquí va su código.
+	    this.elemento=elemento;
+	    anterior=null;
+	    siguiente=null;
         }
 
         /**
@@ -36,7 +38,7 @@ public class ListaCadena {
          * @return el nodo anterior del nodo.
          */
         public Nodo getAnterior() {
-            // Aquí va su código.
+            return(anterior);
         }
 
         /**
@@ -44,7 +46,7 @@ public class ListaCadena {
          * @return el nodo siguiente del nodo.
          */
         public Nodo getSiguiente() {
-            // Aquí va su código.
+            return(siguiente);
         }
 
         /**
@@ -52,7 +54,7 @@ public class ListaCadena {
          * @return el elemento del nodo.
          */
         public String get() {
-            // Aquí va su código.
+            return(elemento);
         }
     }
 
@@ -68,7 +70,7 @@ public class ListaCadena {
      * @return la longitud de la lista, el número de elementos que contiene.
      */
     public int getLongitud() {
-        // Aquí va su código.
+        return(longitud);
     }
 
     /**
@@ -77,7 +79,11 @@ public class ListaCadena {
      *         otro caso.
      */
     public boolean esVacia() {
-        // Aquí va su código.
+        if(cabeza==null){
+	    return(true);
+	}else{
+	    return(false);
+	}
     }
 
     /**
@@ -86,7 +92,17 @@ public class ListaCadena {
      * @param elemento el elemento a agregar.
      */
     public void agregaFinal(String elemento) {
-        // Aquí va su código.
+	Nodo nodo= new Nodo(elemento);
+	if(this.esVacia()){
+	    cabeza=nodo;
+	    rabo=cabeza;
+	}else{
+	    rabo.siguiente=nodo;
+	    nodo.anterior=rabo;
+	    rabo=nodo;	    
+      	}	
+	longitud=longitud+1;
+
     }
 
     /**
@@ -95,7 +111,16 @@ public class ListaCadena {
      * @param elemento el elemento a agregar.
      */
     public void agregaInicio(String elemento) {
-        // Aquí va su código.
+         Nodo nodo= new Nodo(elemento);
+	if(this.esVacia()){
+	    cabeza=nodo;
+	    rabo=cabeza;
+	}else{
+	    cabeza.anterior=nodo;
+	    nodo.siguiente=cabeza;
+	    cabeza=nodo;	    
+      	}	
+	longitud=longitud+1;
     }
 
     /**
@@ -149,8 +174,20 @@ public class ListaCadena {
      *         <tt>false</tt> en otro caso.
      */
     public boolean contiene(String elemento) {
-        // Aquí va su código.
-    }
+        if(this.esVacia()){
+	    return false;
+	}else{
+	    ListaCadena lista = new ListaCadena(null,null,0);
+	    lista = this;
+	    if(lista.getPrimero.elemento.equals(elemento)){
+		return true;
+	    }else{
+		lista.eliminaPrimero();
+		return lista.Contiene(elemento);
+	    }
+	    
+	}
+    
 
     /**
      * Regresa la reversa de la lista.
@@ -183,7 +220,11 @@ public class ListaCadena {
      *         es vacía.
      */
     public String getPrimero() {
-        // Aquí va su código.
+        if(this.esVacia() ){
+	    return(null);
+	}else{
+	    return(cabeza.elemento);
+	}
     }
 
     /**
@@ -192,7 +233,11 @@ public class ListaCadena {
      *         es vacía.
      */
     public String getUltimo() {
-        // Aquí va su código.
+        if(this.esVacia() ){
+	    return(null);
+	}else{
+	    return(rabo.elemento);
+	}
     }
 
     /**
@@ -223,7 +268,20 @@ public class ListaCadena {
      * @return una representación en cadena de la lista.
      */
     public String toString() {
-        // Aquí va su código.
+        if(this.esVacia()){
+	    String s="[]";
+	    return(s);
+	}else if(longitud==1){
+	    String s= "["+ String.format("%s]", this.get(0));
+	    return(s);
+	}else{
+        String s = "[";
+        for (int i = 0; i < longitud-1; i++)
+            s += String.format("%s, ", this.get(i));
+        s += String.format("%s]", this.get(longitud-1));
+	return(s);
+	}
+    }
     }
 
     /**
@@ -231,7 +289,7 @@ public class ListaCadena {
      * @return el nodo cabeza de la lista.
      */
     public Nodo getCabeza() {
-        // Aquí va su código.
+        return(cabeza);
     }
 
     /**
@@ -239,6 +297,6 @@ public class ListaCadena {
      * @return el nodo rabo de la lista.
      */
     public Nodo getRabo() {
-        // Aquí va su código.
+        return(rabo);
     }
 }
