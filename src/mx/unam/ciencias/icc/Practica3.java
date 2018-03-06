@@ -13,6 +13,7 @@ public class Practica3 {
         ListaCadena lista = new ListaCadena();
         int i;
 
+	
         for (i = 0; i < total/2; i++) {
             if (lista.getLongitud() != i) {
                 System.out.println("La longitud de la lista es incorrecta.");
@@ -68,3 +69,6 @@ public class Practica3 {
         }
     }
 }
+
+
+
